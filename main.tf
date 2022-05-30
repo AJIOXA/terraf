@@ -2,14 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "vpc-dev" {
-  source = "./modules/aws_network"
-  env    = "development"
-}
-
-module "sg-dev" {
-  source = "./modules/aws_security"
-}
 
 #=========================================
 
