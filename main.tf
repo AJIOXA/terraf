@@ -2,18 +2,17 @@ provider "aws" {
   region = "us-east-1"
 }
 
-
 #=========================================
 
 resource "aws_db_subnet_group" "my_subnet" {
   name       = "my_subnet"
-  subnet_ids = var.private_subnet_cidrs
+  subnet_ids = aws_subnet.private_subnets[*].id
 }
 
 resource "aws_rds_cluster" "postgresql" {
   cluster_identifier     = "aurora-cluster-demo"
   engine                 = "aurora-postgresql"
-  engine_version         = "14"
+  engine_version         = "13.3"
   availability_zones     = ["us-east-1a", "us-east-1b"]
   database_name          = "chain"
   master_username        = "postgres"
